@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starbock/screens/detailed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   
@@ -73,10 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                _coffeeListCard('assets/starbucks.png','Caffe Misto','Coffeeshop','Our dark, rich espresso balanced with steamed milk and a light layer of foam','\$4.99',true),
-                _coffeeListCard('assets/starbucks.png','Caffe Latte','BrownHouse','Rich, full-bodied espresso with bittersweet milk sauce and steamed milk','\$3.99',false),
-                _coffeeListCard('assets/starbucks.png','Iced Latte','Coffeeshop','Our dark, rich espresso combined with milk and served over ice. A perfect milk-forward cooldown','\$4.99',false),
-                _coffeeListCard('assets/starbucks.png','Iced Mocha','BrownHouse','Our rich, full-bodied espresso combined with bittersweet mocha sauce, milk and ice','\$6.99',true),
+                _coffeeListCard('assets/starbucks.png','Caffe Misto','Coffeeshop','Our dark, rich espresso balanced with steamed milk and a light layer of foam','\$4.99',true,4.33,5,250,10,150),
+                _coffeeListCard('assets/starbucks.png','Caffe Latte','BrownHouse','Rich, full-bodied espresso with bittersweet milk sauce and steamed milk','\$3.99',false,3.98,7,233,8,120),
+                _coffeeListCard('assets/starbucks.png','Iced Latte','Coffeeshop','Our dark, rich espresso combined with milk and served over ice. A perfect milk-forward cooldown','\$4.99',false,4.65,9,289,11,180),
+                _coffeeListCard('assets/starbucks.png','Iced Mocha','BrownHouse','Our rich, full-bodied espresso combined with bittersweet mocha sauce, milk and ice','\$6.99',true,3.24,4,311,15,200),
               ]
             )
           ),
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   
-  _coffeeListCard(String imgPath, String coffeeName, String shopName, String description, String price, bool isFavorite) {
+  _coffeeListCard(String imgPath, String coffeeName, String shopName, String description, String price, bool isFavorite, double rate, int time, int calories, int proteins, int caffeine) {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0),
       child: Container(
@@ -187,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 20.0),
             InkWell(
               onTap: () {
-                // Navigator.of(context).push(MaterialPageRoute( builder: (context) => DetailsPage()));
+                Navigator.of(context).push(MaterialPageRoute( builder: (context) => DetailedScreen(drinkName: coffeeName,resumeName: description,liked: isFavorite,rate: rate,time: time,calories: calories,proteins: proteins,caffeine: caffeine)));
               },
               child: Container(
                 height: 50.0,
